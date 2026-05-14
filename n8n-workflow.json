@@ -20,16 +20,16 @@
     },
     {
       "parameters": {
-        "fromEmail": "portfolio@yourdomain.com",
-        "toEmail": "engr.alikhanbaloch@gmail.com",
+        "sendTo": "engr.alikhanbaloch@gmail.com",
         "subject": "={{ 'New Portfolio Lead: ' + $json.body.name }}",
-        "html": "={{ '<h3>New Message from Portfolio Website</h3><p><strong>Name:</strong> ' + $json.body.name + '</p><p><strong>Email:</strong> ' + $json.body.email + '</p><p><strong>Service:</strong> ' + $json.body.service + '</p><p><strong>Message:</strong><br/>' + $json.body.message + '</p>' }}",
+        "message": "={{ 'New Message from Portfolio Website\\n\\nName: ' + $json.body.name + '\\nEmail: ' + $json.body.email + '\\nService: ' + $json.body.service + '\\n\\nMessage:\\n' + $json.body.message }}",
+        "appendAttribution": false,
         "options": {}
       },
       "id": "2",
-      "name": "Send Email",
-      "type": "n8n-nodes-base.emailSend",
-      "typeVersion": 2,
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
       "position": [
         450,
         300
@@ -41,7 +41,7 @@
       "main": [
         [
           {
-            "node": "Send Email",
+            "node": "Gmail",
             "type": "main",
             "index": 0
           }
