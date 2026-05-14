@@ -1,0 +1,54 @@
+{
+  "name": "Portfolio Contact Form Receiver",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8cc09dbb-00d8-4d4d-942b-a0dd72fe962a",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "8cc09dbb-00d8-4d4d-942b-a0dd72fe962a"
+    },
+    {
+      "parameters": {
+        "fromEmail": "portfolio@yourdomain.com",
+        "toEmail": "engr.alikhanbaloch@gmail.com",
+        "subject": "={{ 'New Portfolio Lead: ' + $json.body.name }}",
+        "html": "={{ '<h3>New Message from Portfolio Website</h3><p><strong>Name:</strong> ' + $json.body.name + '</p><p><strong>Email:</strong> ' + $json.body.email + '</p><p><strong>Service:</strong> ' + $json.body.service + '</p><p><strong>Message:</strong><br/>' + $json.body.message + '</p>' }}",
+        "options": {}
+      },
+      "id": "2",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "meta": {}
+}
